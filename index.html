@@ -3,32 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avenor Productions</title>
-  <!-- Meta & PWA -->
-  <meta name="description" content="Marketing inmobiliario integral con animaciones avanzadas y experiencia 3D.">
-  <link rel="manifest" href="/manifest.json">
+  <title>Avenor – Producciones Inmobiliarias | Fotografía, planos y tours 360</title>
+  <meta name="description" content="Impulsá tus propiedades con fotos, videos, planos y experiencias 360. Avenor transforma cómo se vende el real estate.">
   <link rel="icon" href="/favicon.ico">
   <meta name="theme-color" content="#000000">
-
-  <!-- Fonts & Libs -->
+  <meta name="robots" content="index, follow">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
-  <!-- Styles -->
   <style>
     :root { --bg:#000; --fg:#fff; --accent:#ff6600; --transition:0.6s; --radius:1rem; --text:'Inter',sans-serif; }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--fg); font-family: var(--text); overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
-
-    /* Header transparente que se vuelve oscuro al hacer scroll */
     header { position: fixed; top: 0; width: 100%; background: transparent; z-index: 1000; transition: background .5s ease, backdrop-filter .5s ease; }
     header.scrolled { background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
-
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .nav ul { display: flex; gap: 2rem; list-style: none; position: relative; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
@@ -38,136 +31,33 @@
       .nav ul.active { right: 0; }
       .hamburger { display: flex; }
     }
-
     .logo-container { width:140px; }
-
-.logo-svg {
-  width: 100%;
-  height: auto;
-  transition: all 0.3s ease-in-out;
+.logo-svg { width: 100%; height: auto; transition: all 0.3s ease-in-out;}
+#VENOR { clip-path: inset(0 0 0 0); transition: clip-path 0.7s ease, opacity 0.7s ease; opacity: 1;}
+header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
 }
-
-#VENOR {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.7s ease, opacity 0.7s ease;
-  opacity: 1;
-}
-
-header.scrolled #VENOR {
-  clip-path: inset(0 100% 0 0); /* oculta todo hacia la derecha */
-  opacity: 0;
-}
-    .container { width:85%; max-width:1400px; margin:0 auto; padding:2rem 0; }
-    .btn { background:var(--accent); color:var(--bg); padding:.75rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; transition:transform .3s; }
-    .btn:hover { transform:scale(1.05); }
-
-    /* Hero */
+.container { width:85%; max-width:1400px; margin:0 auto; padding:2rem 0; }
+.btn { background:var(--accent); color:var(--bg); padding:.75rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; transition:transform .3s; }
+.btn:hover { transform:scale(1.05); }
     #hero { position:relative;  overflow:hidden; }
     #hero video { width: 100%; height: auto; filter:brightness(0.5); }
     #hero .overlay { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; padding:0 1rem; }
     #hero h1,#hero p,#hero .btn { opacity:0; transform:translateY(50px); }
-
-    /* Services */
-
-    
-
-    .slide-container{
-  max-width: 1120px;
-  width: 100%;
-  padding: 40px 0px;
-  margin-bottom: 120px;
-}
-.slide-content{
-  margin: 0 40px;
-  overflow: hidden;
-  border-radius: 25px;
-}
-.card{
-  border-radius: 25px;
-  padding: 10px;
-  background-color: #000000;
-  border: 2px solid #ff6600;
-}
-.image-content,
-.card-content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 14px;
-}
-.image-content{
-  position: relative;
-  row-gap: 5px;
-  padding: 25px 0;
-}
-.overlay{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #ff6600;
-  border-radius: 25px 25px 0 25px;
-}
-.overlay::before,
-.overlay::after{
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: -40px;
-  height: 40px;
-  width: 40px;
-  background-color: #4070F4;
-}
-.overlay::after{
-  border-radius: 0 25px 0 0;
-  background-color: #000000;
-}
-.card-image{
-  position: relative;
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  background: #FFF;
-  padding: 3px;
-}
-.card-image .card-img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #4070F4;
-}
-.name{
-  font-size: 18px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-.description{
-  font-size: 14px;
-  color: #ffffff;
-  text-align: center;
-}
-.button{
-  border: none;
-  font-size: 16px;
-  color: #ffffff;
-  padding: 8px 16px;
-  background-color: #ff6600;
-  border-radius: 6px;
-  margin: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.button:hover{
-  background: #8d3901;
-}
-
-.swiper-navBtn{
-  color: #ff6600;
-  transition: color 0.3s ease;
-}
+.slide-container{  max-width: 1120px;  width: 100%;  padding: 40px 0px;  margin-bottom: 120px;}
+.slide-content{ margin: 0 40px;  overflow: hidden;  border-radius: 25px; }
+.card{  border-radius: 25px;  padding: 10px;  background-color: #000000;  border: 2px solid #ff6600;}
+.image-content, .card-content{  display: flex;  flex-direction: column;  align-items: center;  padding: 10px 14px;}
+.image-content{  position: relative;  row-gap: 5px;  padding: 25px 0;}
+.overlay{  position: absolute;  left: 0;  top: 0;  height: 100%;  width: 100%;  background-color: #ff6600;  border-radius: 25px 25px 0 25px;}
+.overlay::before, .overlay::after{  content: ''; position: absolute;  right: 0;  bottom: -40px;  height: 40px;  width: 40px;  background-color: #4070F4;}
+.overlay::after{  border-radius: 0 25px 0 0;  background-color: #000000;}
+.card-image{  position: relative;  height: 150px;  width: 150px;  border-radius: 50%;  background: #FFF;  padding: 3px;}
+.card-image .card-img{  height: 100%;  width: 100%;  object-fit: cover;  border-radius: 50%;  border: 4px solid #4070F4;}
+.name{  font-size: 18px;  font-weight: 800;  color: #ffffff;  margin-bottom: 10px;}
+.description{  font-size: 14px;  color: #ffffff;  text-align: center;}
+.button{  border: none;  font-size: 16px;  color: #ffffff;  padding: 8px 16px;  background-color: #ff6600;  border-radius: 6px;  margin: 14px;  cursor: pointer;  transition: all 0.3s ease;}
+.button:hover{  background: #8d3901;}
+.swiper-navBtn{  color: #ff6600;  transition: color 0.3s ease;}
 .swiper-navBtn:hover{
   color: #8d3901;
 }
@@ -315,16 +205,8 @@ header.scrolled #VENOR {
       }
     }
   }
-  
-  img {
-    max-block-size: 80dvh;
-    max-inline-size: 100%;
-  }
+  img { max-block-size: 80dvh; max-inline-size: 100%;}
 }
-
-
-
-    /* Contact & Footer */
     #contact { padding:6rem 0; }
     #contact h2 { text-align:center; margin-bottom:2rem; }
     #contact form { max-width:600px; margin:0 auto; display:grid; gap:1rem; }
@@ -371,23 +253,18 @@ header.scrolled #VENOR {
       <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </nav>
   </header>
-
-  <!-- Hero -->
   <section id="hero">
     <video src="./img/open.mp4" autoplay muted loop playsinline></video>
   </section>
-
   <div class="slide-container swiper" id="services">
     <h2 class="titulo">Nuestros Servicios</h2>
     <div class="slide-content">
         <div class="card-wrapper swiper-wrapper">
             <div class="card swiper-slide">
-
                 <div class="card-content">
                     <h2 class="name">Gestión de Redes
 </h2>
                     <p class="description">Diseñamos y ejecutamos estrategias de presencia digital. Optimizamos perfiles, planificamos contenido y potenciamos la interacción con tu audiencia para posicionar tu marca en redes sociales con coherencia y estilo.</p>
-
                 </div>
             </div>
             <div class="card swiper-slide">
@@ -396,18 +273,13 @@ header.scrolled #VENOR {
                     <h2 class="name">Publicidad en Redes
 </h2>
                     <p class="description">Creamos campañas de alto rendimiento en Facebook, Instagram y Google. Segmentamos audiencias con precisión para maximizar el alcance, generar leads calificados y multiplicar el valor de tu inversión publicitaria.</p>
-
-                   
                 </div>
             </div>
             <div class="card swiper-slide">
-        
                 <div class="card-content">
                     <h2 class="name">Creación de Contenido
 </h2>
                     <p class="description">Desarrollamos contenido atractivo, relevante y estratégico. Desde textos hasta piezas visuales, cuidamos cada detalle para transmitir tu propuesta de valor y construir una identidad sólida.</p>
-
-                   
                 </div>
             </div>
             <div class="card swiper-slide">
@@ -415,115 +287,85 @@ header.scrolled #VENOR {
                     <h2 class="name">Fotografía
 </h2>
                     <p class="description">Capturamos espacios con estética y técnica profesional. Mostramos lo mejor de cada propiedad con imágenes de alto impacto que despiertan deseo e inspiran confianza.</p>
-
                 </div>
             </div>
             <div class="card swiper-slide">
-               
-
                 <div class="card-content">
                     <h2 class="name">Video
 </h2>
                     <p class="description">Producimos videos dinámicos y envolventes que destacan las virtudes de tu propiedad. Sumamos narrativa visual, música e imagen profesional para enamorar a tus potenciales clientes.</p>
-
-                   
                 </div>
             </div>
             <div class="card swiper-slide">
-               
-
                 <div class="card-content">
                     <h2 class="name">Plano
 </h2>
                     <p class="description">Elaboramos planos arquitectónicos claros y visuales. Brindamos una representación técnica y estética del espacio, ideal para que el cliente entienda dimensiones y distribución al instante.</p>
-
-                 
                 </div>
             </div>
             <div class="card swiper-slide">
-              
-
                 <div class="card-content">
                     <h2 class="name">Amueblamiento Virtual
 </h2>
                     <p class="description">Transformamos espacios vacíos en hogares soñados. Gracias a tecnología avanzada, mostramos el máximo potencial de cada ambiente con diseños virtuales elegantes, funcionales y realistas.</p>
-
-                 
                 </div>
             </div>
             <div class="card swiper-slide">
-                
-
                 <div class="card-content">
                     <h2 class="name">Tour 360
 </h2>
                     <p class="description">Ofrecemos una experiencia inmersiva e interactiva. Nuestros recorridos virtuales permiten conocer cada rincón de una propiedad desde cualquier dispositivo, como si estuvieras allí.</p>
-
-                 
                 </div>
             </div>
             <div class="card swiper-slide">
-               
                 <div class="card-content">
                     <h2 class="name">Diseño Web
 </h2>
                     <p class="description">Creamos sitios web impactantes, funcionales y 100% responsive. Reflejamos la identidad de tu marca y optimizamos cada detalle para que tu presencia online sea profesional y efectiva.</p>
-
-                   
                 </div>
             </div>
         </div>
     </div>
-
     <div class="swiper-button-next swiper-navBtn"></div>
     <div class="swiper-button-prev swiper-navBtn"></div>
     <div class="swiper-pagination"></div>
 </div>
-
-    <!-- Trust -->
   <section class="slider-inmobiliarias">
     <h2 class="slider-titulo">Inmobiliarias que confiaron</h2>
     <div class="slider-container">
       <div class="slider-track">
-        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" loading="lazy" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" loading="lazy" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" loading="lazy" alt="Inmobiliaria 1" />
         <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
-        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
-        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
-        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
-        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
-        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
-        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
-        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
-        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
-        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
-        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
+        <img src="img/DEJTIAR.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" loading="lazy" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" loading="lazy" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" loading="lazy" alt="Inmobiliaria 1" />
       </div>
     </div>
   </section>
-  
-
   <section>
     <h2 class="titulo">Amueblamiento Virtual</h2>
     <div class="compare">
     <section class="before">
-      <img src="./img/living-vacio.png" alt="" />
+      <img src="./img/living-vacio.png" loading="lazy" alt="" />
     </section>
     <section class="after">
-      <img src="./img/living.png" alt="" />
+      <img src="./img/living.png" loading="lazy" alt="" />
     </section>
     <input type="range" id="range" step="0.1">
   </div>
   </section>
-  
-
-    <!-- Stats -->
     <section id="stats" class="container">
         <div class="stat"><h3 data-count="200">0</h3><p>Proyectos</p></div>
         <div class="stat"><h3 data-count="150">0</h3><p>Clientes</p></div>
         <div class="stat"><h3 data-count="320">0</h3><p>Campañas</p></div>
       </section>
-
-    <!-- Team -->
     <section id="team" class="container">
         <h2>Equipo</h2>
         <div class="team-grid">
@@ -531,8 +373,6 @@ header.scrolled #VENOR {
           <div class="team-card"><h3>Giuliana Marcovecchio</h3><p>Co-Founder: +2 años de experiencia en Gestión de Redes, Fotografía y Video. </p></div>
         </div>
     </section>
-
-  <!-- Contact -->
   <section id="contact" class="container">
     <h2>Contáctanos</h2>
     <form  action="https://formspree.io/f/xeogqepv"
@@ -544,41 +384,29 @@ header.scrolled #VENOR {
       <button class="btn" type="submit">Enviar</button>
     </form>
   </section>
-
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>&copy; 2025 Avenor | Todos los derechos reservados</p>
     </div>
   </footer>
-
-  <!-- Scripts -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
-
   <script>
-    // Header scroll effect
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 50);
     });
-
     window.addEventListener('load', ()=>{
-      // Hide loader
       document.getElementById('loader').style.display = 'none';
-      // Progress bar
       window.addEventListener('scroll', ()=>{
         const w = document.documentElement.scrollTop;
         const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         document.getElementById('progress').style.width = (w/h)*100 + '%';
       });
-      // Hamburger
       document.getElementById('hamburger').onclick = ()=> 
         document.getElementById('menu').classList.toggle('active');
-      // GSAP Hero
       gsap.to('#hero h1',{opacity:1,y:0,duration:1});
       gsap.to('#hero p',{opacity:1,y:0,duration:1,delay:.3});
       gsap.to('#hero .btn',{opacity:1,y:0,duration:1,delay:.6});
-      // Counters
       document.querySelectorAll('#stats .stat h3').forEach(el=>
         gsap.fromTo(el,{innerText:0},{ 
           innerText:el.dataset.count,
@@ -588,7 +416,6 @@ header.scrolled #VENOR {
           scrollTrigger:{ trigger:el, start:'top 80%' }
         })
       );
-      // Three.js particles
       const sec = document.getElementById('services'),
             canvas = document.getElementById('services-canvas'),
             renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
@@ -617,13 +444,8 @@ header.scrolled #VENOR {
     });
   </script>
   <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
-
-  <!-- JavaScript -->
-    <!--Uncomment this line-->
   <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/script.js"></script>
-
-  <script>
-     
+  <script>  
 var swiper = new Swiper(".slide-content", {
     slidesPerView: 3,
     spaceBetween: 25,
@@ -640,7 +462,6 @@ var swiper = new Swiper(".slide-content", {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-
     breakpoints:{
         0: {
             slidesPerView: 1,
@@ -653,13 +474,10 @@ var swiper = new Swiper(".slide-content", {
         },
     },
   });
-
   </script>
-
   <script>
     range.oninput = () =>
     document.body.style.setProperty('--pos', range.value + '%')
   </script>
-
 </body>
 </html>
