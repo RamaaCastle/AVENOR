@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avenor Productions</title>
+  <!-- Meta & PWA -->
+  <meta name="description" content="Marketing inmobiliario integral con animaciones avanzadas y experiencia 3D.">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Fonts & Libs -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
+  <!-- Styles -->
+  <style>
+    :root { --bg:#000; --fg:#fff; --accent:#ff6600; --transition:0.6s; --radius:1rem; --text:'Inter',sans-serif; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--text); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Header transparente que se vuelve oscuro al hacer scroll */
+    header { position: fixed; top: 0; width: 100%; background: transparent; z-index: 1000; transition: background .5s ease, backdrop-filter .5s ease; }
+    header.scrolled { background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .nav ul { display: flex; gap: 2rem; list-style: none; position: relative; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: var(--fg); }
+    @media (max-width: 768px) {
+      .nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background: var(--bg); flex-direction: column; padding: 4rem 1rem; gap: 1.5rem; transition: right var(--transition); }
+      .nav ul.active { right: 0; }
+      .hamburger { display: flex; }
+    }
+
+    .logo-container { width:140px; }
+
+.logo-svg {
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+#VENOR {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.7s ease, opacity 0.7s ease;
+  opacity: 1;
+}
+
+header.scrolled #VENOR {
+  clip-path: inset(0 100% 0 0); /* oculta todo hacia la derecha */
+  opacity: 0;
+}
+    .container { width:85%; max-width:1400px; margin:0 auto; padding:2rem 0; }
+    .btn { background:var(--accent); color:var(--bg); padding:.75rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; transition:transform .3s; }
+    .btn:hover { transform:scale(1.05); }
+
+    /* Hero */
+    #hero { position:relative;  overflow:hidden; }
+    #hero video { width: 100%; height: auto; filter:brightness(0.5); }
+    #hero .overlay { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; padding:0 1rem; }
+    #hero h1,#hero p,#hero .btn { opacity:0; transform:translateY(50px); }
+
+    /* Services */
+
+    
+
+    .slide-container{
+  max-width: 1120px;
+  width: 100%;
+  padding: 40px 0px;
+  margin-bottom: 120px;
+}
+.slide-content{
+  margin: 0 40px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.card{
+  border-radius: 25px;
+  padding: 10px;
+  background-color: #000000;
+  border: 2px solid #ff6600;
+}
+.image-content,
+.card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content{
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+.overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #ff6600;
+  border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+  background-color: #4070F4;
+}
+.overlay::after{
+  border-radius: 0 25px 0 0;
+  background-color: #000000;
+}
+.card-image{
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #FFF;
+  padding: 3px;
+}
+.card-image .card-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #4070F4;
+}
+.name{
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.description{
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+}
+.button{
+  border: none;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 8px 16px;
+  background-color: #ff6600;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button:hover{
+  background: #8d3901;
+}
+
+.swiper-navBtn{
+  color: #ff6600;
+  transition: color 0.3s ease;
+}
+.swiper-navBtn:hover{
+  color: #8d3901;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after{
+  font-size: 35px;
+}
+.swiper-button-next{
+  right: 0;
+}
+.swiper-button-prev{
+  left: 0;
+}
+.swiper-pagination-bullet{
+  background-color: #ff6600;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+  background-color: #8d3901;
+}
+
+@media screen and (max-width: 768px) {
+  .slide-content{
+    margin: 0 10px;
+  }
+  .swiper-navBtn{
+    display: none;
+  }
+}
+
+
+
+
+    /* Stats */
+    #stats { display:flex; justify-content:space-around; flex-wrap:wrap; gap:2rem; padding:4rem 0; }
+    #stats .stat { text-align:center; z-index:2; }
+    #stats .stat h3 { font-size:3rem; color:var(--accent); }
+
+    /* Team */
+    #team { padding:6rem 0; }
+    #team h2 { text-align:center; margin-bottom:3rem; }
+    .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+    .team-card { background:rgba(255,255,255,0.05); padding:2rem; border-radius:var(--radius); text-align:center; }
+    .team-card img { width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:1rem; }
+
+    /* Trust (continuous) */
+/*slider*/
+
+.slider-inmobiliarias {
+  padding: 4rem 2rem;
+  background-color: #000; /* Fondo negro */
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.slider-titulo {
+     position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; 
+}
+
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  width: calc(200%); /* El doble para loop */
+  animation: slide 20s linear infinite;
+}
+
+.slider-track img {
+  width: 200px;
+  margin: 0 2rem;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(1.2);
+  transition: transform 0.3s;
+}
+
+.slider-track img:hover {
+  transform: scale(1.05);
+  filter: none;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+    /* Image Compare */
+  
+
+    @layer demo {
+  .compare {
+    display: grid;
+    
+    > * {
+      grid-area: 1 / 1;
+    }
+    
+    > section {
+      display: grid;
+      place-content: center;
+    }
+    
+    .before {
+      mask: linear-gradient(to right, #000 0, var(--pos, 50%), #ff660000 0);
+    }
+
+    .after {
+      mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
+    }
+
+    > input[type="range"] {
+      z-index: 1;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        inline-size: 4px;
+        block-size: 100%;
+        background-color: CanvasText;
+      } 
+
+      &::-moz-range-thumb {
+        appearance: none;
+        inline-size: 4px;
+        block-size: 100dvh;
+        background-color: CanvasText;
+      }
+    }
+  }
+  
+  img {
+    max-block-size: 80dvh;
+    max-inline-size: 100%;
+  }
+}
+
+
+
+    /* Contact & Footer */
+    #contact { padding:6rem 0; }
+    #contact h2 { text-align:center; margin-bottom:2rem; }
+    #contact form { max-width:600px; margin:0 auto; display:grid; gap:1rem; }
+    #contact input,#contact textarea { padding:1rem; border-radius:var(--radius); border:none; background:rgba(255,255,255,0.05); color:var(--fg); }
+    footer { background:rgba(255,255,255,0.1); text-align:center; padding:2rem 1rem; }
+  </style>
+</head>
+<body>
+  <div id="loader"><div class="spinner"></div></div>
+  <div id="progress"></div>
+
+  <header>
+    <nav class="nav container">
+      <div class="logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 255">
+            <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
+            <defs>
+              <style>
+                .st0 {
+                  fill: #fff;
+                }
+              </style>
+            </defs>
+            <g id="A">
+              <path class="st0" d="M171.43,152.22l37.91,99.33h0c-13.11,5.02-27.81-1.54-32.83-14.65l-25.62-68.66,20.55-16.02ZM17.51,252.63L113.77,1.77c8.62,21.55,24.05,64.46,33.77,88.78,3.73,9.32,6.35,15.89,6.98,17.45,5.35-4.3,12.93-11.49,19.27-22.27,8.73-14.85,10.64-28.96,11.12-36.59.06.02.14.05.24.08,6.19,2.18,9.6,7.35,10.79,9.15,4.95,7.49,4.57,16.87,4.5,18.6-.9,22.37-29.59,49.66-31.62,51.56L17.51,252.63M114.08,68.83l-39.69,104.05c19.63-16.17,40.46-33.06,60.09-49.23l-20.39-54.83ZM122.82,88.55c4.78-4.8,11.59-10.67,20.68-15.96,10.74-6.25,20.74-9.41,28-11.1-.31,2.59-.95,6.28-2.36,10.52-1.21,3.63-3.96,10.61-13.79,22.22-4.94,5.83-12.2,13.48-22.25,21.29-3.43-8.99-6.85-17.98-10.28-26.97Z"/>
+            </g>
+            <g id="VENOR">
+              <g>
+                <path class="st0" d="M272.51,213.34l-37.51-111.61h26.14l25.52,87.56h.54l25.52-87.56h25.45l-37.51,111.61h-28.15Z"/>
+                <path class="st0" d="M453.6,213.34h-73.94v-111.61h73.94v19.26h-50.58v26.92h47.72v17.94h-47.72v28.15h50.58v19.34Z"/>
+                <path class="st0" d="M500.58,213.34v-111.61h19.49l52.13,72.71h.62v-72.71h22.35v111.61h-19.34l-52.21-73.09h-.7v73.09h-22.35Z"/>
+                <path class="st0" d="M748.03,157.57c0,35.5-20.81,57.7-53.83,57.7s-53.83-22.2-53.83-57.7,20.73-57.78,53.83-57.78,53.83,22.2,53.83,57.78ZM664.19,157.57c0,23.36,11.68,38.13,30.01,38.13s29.93-14.77,29.93-38.13-11.68-38.29-29.93-38.29-30.01,14.85-30.01,38.29Z"/>
+                <path class="st0" d="M816.51,213.34h-23.36v-111.61h45.71c25.68,0,40.38,13.54,40.38,35.58,0,14.31-7.42,26.68-20.26,31.71l23.51,44.32h-26.45l-20.81-40.84h-18.72v40.84ZM816.51,155.56h20.11c11.76,0,18.64-6.73,18.64-17.79s-7.27-17.79-18.87-17.79h-19.88v35.58Z"/>
+              </g>
+            </g>
+          </svg>
+      </div>
+      <ul id="menu">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#team">Equipo</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <video src="./img/open.mp4" autoplay muted loop playsinline></video>
+  </section>
+
+  <div class="slide-container swiper" id="services">
+    <h2 class="titulo">Nuestros Servicios</h2>
+    <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+            <div class="card swiper-slide">
+
+                <div class="card-content">
+                    <h2 class="name">Gestión de Redes
+</h2>
+                    <p class="description">Diseñamos y ejecutamos estrategias de presencia digital. Optimizamos perfiles, planificamos contenido y potenciamos la interacción con tu audiencia para posicionar tu marca en redes sociales con coherencia y estilo.</p>
+
+                </div>
+            </div>
+            <div class="card swiper-slide">
+
+                <div class="card-content">
+                    <h2 class="name">Publicidad en Redes
+</h2>
+                    <p class="description">Creamos campañas de alto rendimiento en Facebook, Instagram y Google. Segmentamos audiencias con precisión para maximizar el alcance, generar leads calificados y multiplicar el valor de tu inversión publicitaria.</p>
+
+                   
+                </div>
+            </div>
+            <div class="card swiper-slide">
+        
+                <div class="card-content">
+                    <h2 class="name">Creación de Contenido
+</h2>
+                    <p class="description">Desarrollamos contenido atractivo, relevante y estratégico. Desde textos hasta piezas visuales, cuidamos cada detalle para transmitir tu propuesta de valor y construir una identidad sólida.</p>
+
+                   
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                <div class="card-content">
+                    <h2 class="name">Fotografía
+</h2>
+                    <p class="description">Capturamos espacios con estética y técnica profesional. Mostramos lo mejor de cada propiedad con imágenes de alto impacto que despiertan deseo e inspiran confianza.</p>
+
+                </div>
+            </div>
+            <div class="card swiper-slide">
+               
+
+                <div class="card-content">
+                    <h2 class="name">Video
+</h2>
+                    <p class="description">Producimos videos dinámicos y envolventes que destacan las virtudes de tu propiedad. Sumamos narrativa visual, música e imagen profesional para enamorar a tus potenciales clientes.</p>
+
+                   
+                </div>
+            </div>
+            <div class="card swiper-slide">
+               
+
+                <div class="card-content">
+                    <h2 class="name">Plano
+</h2>
+                    <p class="description">Elaboramos planos arquitectónicos claros y visuales. Brindamos una representación técnica y estética del espacio, ideal para que el cliente entienda dimensiones y distribución al instante.</p>
+
+                 
+                </div>
+            </div>
+            <div class="card swiper-slide">
+              
+
+                <div class="card-content">
+                    <h2 class="name">Amueblamiento Virtual
+</h2>
+                    <p class="description">Transformamos espacios vacíos en hogares soñados. Gracias a tecnología avanzada, mostramos el máximo potencial de cada ambiente con diseños virtuales elegantes, funcionales y realistas.</p>
+
+                 
+                </div>
+            </div>
+            <div class="card swiper-slide">
+                
+
+                <div class="card-content">
+                    <h2 class="name">Tour 360
+</h2>
+                    <p class="description">Ofrecemos una experiencia inmersiva e interactiva. Nuestros recorridos virtuales permiten conocer cada rincón de una propiedad desde cualquier dispositivo, como si estuvieras allí.</p>
+
+                 
+                </div>
+            </div>
+            <div class="card swiper-slide">
+               
+                <div class="card-content">
+                    <h2 class="name">Diseño Web
+</h2>
+                    <p class="description">Creamos sitios web impactantes, funcionales y 100% responsive. Reflejamos la identidad de tu marca y optimizamos cada detalle para que tu presencia online sea profesional y efectiva.</p>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="swiper-button-next swiper-navBtn"></div>
+    <div class="swiper-button-prev swiper-navBtn"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+    <!-- Trust -->
+  <section class="slider-inmobiliarias">
+    <h2 class="slider-titulo">Inmobiliarias que confiaron</h2>
+    <div class="slider-container">
+      <div class="slider-track">
+        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
+        <img src="img/logo-cbr.png" alt="Inmobiliaria 1" />
+        <img src="img/remax-logo-blanco.png" alt="Inmobiliaria 2" />
+        <img src="img/DEJTIAR.png" alt="Inmobiliaria 1" />
+      </div>
+    </div>
+  </section>
+  
+
+  <section>
+    <h2 class="titulo">Amueblamiento Virtual</h2>
+    <div class="compare">
+    <section class="before">
+      <img src="./img/living-vacio.png" alt="" />
+    </section>
+    <section class="after">
+      <img src="./img/living.png" alt="" />
+    </section>
+    <input type="range" id="range" step="0.1">
+  </div>
+  </section>
+  
+
+    <!-- Stats -->
+    <section id="stats" class="container">
+        <div class="stat"><h3 data-count="200">0</h3><p>Proyectos</p></div>
+        <div class="stat"><h3 data-count="150">0</h3><p>Clientes</p></div>
+        <div class="stat"><h3 data-count="320">0</h3><p>Campañas</p></div>
+      </section>
+
+    <!-- Team -->
+    <section id="team" class="container">
+        <h2>Equipo</h2>
+        <div class="team-grid">
+          <div class="team-card"><h3>Ramiro Castillo</h3><p>Founder: +2 años de experiencia en Gestión de Redes, Publicidad con Meta y Google, Fotografía, Video, Amueblamiento Virtual, Plano y Diseño Web.</p></div>
+          <div class="team-card"><h3>Giuliana Marcovecchio</h3><p>Co-Founder: +2 años de experiencia en Gestión de Redes, Fotografía y Video. </p></div>
+        </div>
+    </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2>Contáctanos</h2>
+    <form  action="https://formspree.io/f/xeogqepv"
+    method="POST">
+      <input type="text" name="name" placeholder="Nombre Completo" required>
+      <input type="email" name="email" placeholder="Correo Electrónico" required>
+      <input type="tel" name="phone" placeholder="Teléfono">
+      <textarea name="message" rows="5" placeholder="Tu mensaje..." required></textarea>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Avenor | Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    window.addEventListener('load', ()=>{
+      // Hide loader
+      document.getElementById('loader').style.display = 'none';
+      // Progress bar
+      window.addEventListener('scroll', ()=>{
+        const w = document.documentElement.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('progress').style.width = (w/h)*100 + '%';
+      });
+      // Hamburger
+      document.getElementById('hamburger').onclick = ()=> 
+        document.getElementById('menu').classList.toggle('active');
+      // GSAP Hero
+      gsap.to('#hero h1',{opacity:1,y:0,duration:1});
+      gsap.to('#hero p',{opacity:1,y:0,duration:1,delay:.3});
+      gsap.to('#hero .btn',{opacity:1,y:0,duration:1,delay:.6});
+      // Counters
+      document.querySelectorAll('#stats .stat h3').forEach(el=>
+        gsap.fromTo(el,{innerText:0},{ 
+          innerText:el.dataset.count,
+          duration:2,
+          ease:'power1.in',
+          snap:{innerText:1},
+          scrollTrigger:{ trigger:el, start:'top 80%' }
+        })
+      );
+      // Three.js particles
+      const sec = document.getElementById('services'),
+            canvas = document.getElementById('services-canvas'),
+            renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
+      renderer.setSize(window.innerWidth, sec.clientHeight);
+      const scene = new THREE.Scene(),
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth/sec.clientHeight, 0.1, 1000);
+      camera.position.z = 20;
+      const geo = new THREE.BufferGeometry(),
+            count = 500,
+            pos = new Float32Array(count*3);
+      for(let i=0;i<pos.length;i++) pos[i] = (Math.random()-0.5)*sec.clientWidth;
+      geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const mat = new THREE.PointsMaterial({ color:0xff6600, size:3, transparent:true, opacity:0.6 }),
+            points = new THREE.Points(geo, mat);
+      scene.add(points);
+      (function animate(){
+        requestAnimationFrame(animate);
+        points.rotation.y += 0.001;
+        renderer.render(scene, camera);
+      })();
+      window.addEventListener('resize', ()=>{
+        renderer.setSize(window.innerWidth, sec.clientHeight);
+        camera.aspect = window.innerWidth/sec.clientHeight;
+        camera.updateProjectionMatrix();
+      });
+    });
+  </script>
+  <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript -->
+    <!--Uncomment this line-->
+  <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/script.js"></script>
+
+  <script>
+     
+var swiper = new Swiper(".slide-content", {
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    breakpoints:{
+        0: {
+            slidesPerView: 1,
+        },
+        520: {
+            slidesPerView: 2,
+        },
+        950: {
+            slidesPerView: 3,
+        },
+    },
+  });
+
+  </script>
+
+  <script>
+    range.oninput = () =>
+    document.body.style.setProperty('--pos', range.value + '%')
+  </script>
+
+</body>
+</html>
