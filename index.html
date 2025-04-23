@@ -24,7 +24,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
   <style>
-    :root { --bg:#000; --fg:#fff; --accent:#ff6600; --transition:0.6s; --radius:1rem; --text:'Inter',sans-serif; }
+    :root { --bg:#000; --fg:#fff; --accent:#ff6600; --transition:0.6s; --radius:1rem; --text:'Inter',sans-serif;    --card-height: 300px;
+      --card-bg: #fff;
+      --card-radius: 10px;
+      --card-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    --black: #000
+--white: #fff}
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--fg); font-family: var(--text); overflow-x: hidden; }
@@ -220,36 +225,144 @@
     #hero video { width: 100%; height: auto; filter:brightness(0.5); }
     #hero .overlay { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; padding:0 1rem; }
     #hero h1,#hero p,#hero .btn { opacity:0; transform:translateY(50px); }
-.slide-container{  max-width: 1120px;  width: 100%;  padding: 40px 0px;  margin-bottom: 120px;}
-.slide-content{ margin: 0 40px;  overflow: hidden;  border-radius: 25px; }
-.card{  border-radius: 25px;  padding: 10px;  background-color: #000000;  border: 2px solid #ff6600;}
-.image-content, .card-content{  display: flex;  flex-direction: column;  align-items: center;  padding: 10px 14px;}
-.image-content{  position: relative;  row-gap: 5px;  padding: 25px 0;}
-.overlay{  position: absolute;  left: 0;  top: 0;  height: 100%;  width: 100%;  background-color: #ff6600;  border-radius: 25px 25px 0 25px;}
-.overlay::before, .overlay::after{  content: ''; position: absolute;  right: 0;  bottom: -40px;  height: 40px;  width: 40px;  background-color: #4070F4;}
-.overlay::after{  border-radius: 0 25px 0 0;  background-color: #000000;}
-.card-image{  position: relative;  height: 150px;  width: 150px;  border-radius: 50%;  background: #FFF;  padding: 3px;}
-.card-image .card-img{  height: 100%;  width: 100%;  object-fit: cover;  border-radius: 50%;  border: 4px solid #4070F4;}
-.name{  font-size: 18px;  font-weight: 800;  color: #ffffff;  margin-bottom: 10px;}
-.description{  font-size: 14px;  color: #ffffff;  text-align: center;}
-.button{  border: none;  font-size: 16px;  color: #ffffff;  padding: 8px 16px;  background-color: #ff6600;  border-radius: 6px;  margin: 14px;  cursor: pointer;  transition: all 0.3s ease;}
-.button:hover{  background: #8d3901;}
-.swiper-navBtn{  color: #ff6600;  transition: color 0.3s ease;}
-.swiper-navBtn:hover{ color: #8d3901;}
-.swiper-navBtn::before,
-.swiper-navBtn::after{  font-size: 35px;}
-.swiper-button-next{  right: 0;}
-.swiper-button-prev{  left: 0;}
-.swiper-pagination-bullet{  background-color: #ff6600;  opacity: 1;}
-.swiper-pagination-bullet-active{  background-color: #8d3901;}
-@media screen and (max-width: 768px) {
-  .slide-content{
-    margin: 0 10px;
-  }
-  .swiper-navBtn{
-    display: none;
-  }
-} 
+
+      /* canvas ocupa TODO el area de .services-section */
+    #particles-bg {
+      position: absolute;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    /* Contenido encima del canvas */
+    .services-section > *:not(canvas) {
+
+      z-index: 1;
+    }
+
+    .services-section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* GRID 3 columnas / 1 en móvil */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Perspectiva para el flip */
+    .service-card {
+      perspective: 1200px;
+      height: var(--card-height);
+      margin: 10px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform var(--transition);
+    }
+    .service-card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Caras front/back */
+    .card-face {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backface-visibility: hidden;
+      border: 2px solid #ff6600;
+      background: #000000;
+      box-shadow: var(--card-shadow);
+
+      text-align: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Header: número + título */
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-number {
+        top: 10%;
+        position: absolute;
+      display: flex;
+      align-items: center;
+      margin-right: 0.75rem;
+    }
+    .card-number svg {
+      width: 32px; height: 32px;
+      fill: var(--accent);
+      margin-right: 0.4rem;
+    }
+    .card-number span {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .service-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Botones */
+    .btn-more{
+        position: absolute;
+        bottom: 10%;
+
+    }
+    .btn-more,
+    .btn-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--btn-color);
+      transition: color 0.3s;
+    }
+    .btn-more:hover,
+    .btn-close:hover {
+      color: var(--btn-hover);
+    }
+    .btn-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    /* Descripción en la cara trasera */
+    .description {
+      margin-top: 1rem;
+      line-height: 1.5;
+      flex: 1;
+      overflow-y: auto;
+    }
 #stats { display:flex; justify-content:space-around; flex-wrap:wrap; gap:2rem; padding:4rem 0; }
 #stats .stat { text-align:center; z-index:2; }
 #stats .stat h3 { font-size:3rem; color:var(--accent); }
@@ -419,80 +532,13 @@
   <section id="hero">
     <video src="./img/open.mp4" autoplay muted loop playsinline></video>
   </section>
-  <div class="slide-container swiper" id="services">
-    <h2 class="titulo">Nuestros Servicios</h2>
-    <div class="slide-content">
-        <div class="card-wrapper swiper-wrapper">
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Gestión de Redes
-</h2>
-                    <p class="description">Diseñamos y ejecutamos estrategias de presencia digital. Optimizamos perfiles, planificamos contenido y potenciamos la interacción con tu audiencia para posicionar tu marca en redes sociales con coherencia y estilo.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
 
-                <div class="card-content">
-                    <h2 class="name">Publicidad en Redes
-</h2>
-                    <p class="description">Creamos campañas de alto rendimiento en Facebook, Instagram y Google. Segmentamos audiencias con precisión para maximizar el alcance, generar leads calificados y multiplicar el valor de tu inversión publicitaria.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Creación de Contenido
-</h2>
-                    <p class="description">Desarrollamos contenido atractivo, relevante y estratégico. Desde textos hasta piezas visuales, cuidamos cada detalle para transmitir tu propuesta de valor y construir una identidad sólida.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Fotografía
-</h2>
-                    <p class="description">Capturamos espacios con estética y técnica profesional. Mostramos lo mejor de cada propiedad con imágenes de alto impacto que despiertan deseo e inspiran confianza.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Video
-</h2>
-                    <p class="description">Producimos videos dinámicos y envolventes que destacan las virtudes de tu propiedad. Sumamos narrativa visual, música e imagen profesional para enamorar a tus potenciales clientes.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Plano
-</h2>
-                    <p class="description">Elaboramos planos arquitectónicos claros y visuales. Brindamos una representación técnica y estética del espacio, ideal para que el cliente entienda dimensiones y distribución al instante.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Amueblamiento Virtual
-</h2>
-                    <p class="description">Transformamos espacios vacíos en hogares soñados. Gracias a tecnología avanzada, mostramos el máximo potencial de cada ambiente con diseños virtuales elegantes, funcionales y realistas.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Tour 360
-</h2>
-                    <p class="description">Ofrecemos una experiencia inmersiva e interactiva. Nuestros recorridos virtuales permiten conocer cada rincón de una propiedad desde cualquier dispositivo, como si estuvieras allí.</p>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="card-content">
-                    <h2 class="name">Diseño Web
-</h2>
-                    <p class="description">Creamos sitios web impactantes, funcionales y 100% responsive. Reflejamos la identidad de tu marca y optimizamos cada detalle para que tu presencia online sea profesional y efectiva.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="swiper-button-next swiper-navBtn"></div>
-    <div class="swiper-button-prev swiper-navBtn"></div>
-    <div class="swiper-pagination"></div>
-</div>
+  <section id="services" class="services-section">
+    <canvas id="particles-bg"></canvas>
+    <h2 class="services-title">Nuestros Servicios</h2>
+    <div class="services-grid"></div>
+  </section>
+
   <section class="slider-inmobiliarias">
     <h2 class="slider-titulo">Inmobiliarias que confiaron</h2>
     <div class="slider-container">
@@ -525,9 +571,9 @@
   </div>
   </section>
     <section id="stats" class="container">
-        <div class="stat"><h3 data-count="200">0</h3><p>Proyectos</p></div>
-        <div class="stat"><h3 data-count="150">0</h3><p>Clientes</p></div>
-        <div class="stat"><h3 data-count="320">0</h3><p>Campañas</p></div>
+        <div class="stat"><h3 data-count="+20">0</h3><p>Proyectos</p></div>
+        <div class="stat"><h3 data-count="+10">0</h3><p>Clientes</p></div>
+        <div class="stat"><h3 data-count="+100">0</h3><p>Campañas</p></div>
       </section>
     <section id="team" class="container">
         <h2>Equipo</h2>
@@ -553,6 +599,110 @@
     </div>
   </footer>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+  <!-- asegúrate de tener GSAP + ScrollTrigger cargados -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+  <script>
+        // === Partículas naranjas SOLO en la sección ===
+        (function(){
+      const section = document.querySelector('.services-section');
+      const canvas  = document.getElementById('particles-bg');
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+      const scene    = new THREE.Scene();
+      const camera   = new THREE.PerspectiveCamera(60,1,1,1000);
+      camera.position.z = 200;
+
+      // Ajustar tamaño al de la sección
+      function resize() {
+        const { width, height } = section.getBoundingClientRect();
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Geometría de partículas
+      const geometry = new THREE.BufferGeometry();
+      const count    = 800;
+      const pos      = new Float32Array(count * 3);
+      for (let i = 0; i < pos.length; i++) {
+        pos[i] = (Math.random() - 0.5) * 1000;
+      }
+      geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+      // Material naranja
+      const material = new THREE.PointsMaterial({ color: 0xff6600, size: 2 });
+      const points   = new THREE.Points(geometry, material);
+      scene.add(points);
+
+      // Animación
+      (function animate() {
+        requestAnimationFrame(animate);
+        points.rotation.x += 0.0005;
+        points.rotation.y += 0.001;
+        renderer.render(scene, camera);
+      })();
+    })();
+    (function(){
+      // 1) Datos de servicios
+      const services = [
+        { name: 'Gestión de Redes Sociales', desc: 'Diseñamos y ejecutamos estrategias de presencia digital. Optimizamos perfiles, planificamos contenido y potenciamos la interacción con tu audiencia para posicionar tu marca en redes sociales con coherencia y estilo.' },
+        { name: 'Publicidad en Redes',           desc: 'Creamos campañas de alto rendimiento en Facebook, Instagram y Google. Segmentamos audiencias con precisión para maximizar el alcance, generar leads calificados y multiplicar el valor de tu inversión publicitaria.' },
+        { name: 'Creación de Contenido',         desc: 'Desarrollamos contenido atractivo, relevante y estratégico. Desde textos hasta piezas visuales, cuidamos cada detalle para transmitir tu propuesta de valor y construir una identidad sólida.' },
+        { name: 'Fotografía',                    desc: 'Capturamos espacios con estética y técnica profesional. Mostramos lo mejor de cada propiedad con imágenes de alto impacto que despiertan deseo e inspiran confianza.' },
+        { name: 'Video',                         desc: 'Producimos videos dinámicos y envolventes que destacan las virtudes de tu propiedad. Sumamos narrativa visual, música e imagen profesional para enamorar a tus potenciales clientes.' },
+        { name: 'Plano',                         desc: 'Elaboramos planos arquitectónicos claros y visuales. Brindamos una representación técnica y estética del espacio, ideal para que el cliente entienda dimensiones y distribución al instante.' },
+        { name: 'Amueblamiento Virtual',         desc: 'Transformamos espacios vacíos en hogares soñados. Gracias a tecnología avanzada, mostramos el máximo potencial de cada ambiente con diseños virtuales elegantes, funcionales y realistas.' },
+        { name: 'Tour 360',                      desc: 'Ofrecemos una experiencia inmersiva e interactiva. Nuestros recorridos virtuales permiten conocer cada rincón de una propiedad desde cualquier dispositivo, como si estuvieras allí.' },
+        { name: 'Diseño Web',                    desc: 'Creamos sitios web impactantes, funcionales y 100% responsive. Reflejamos la identidad de tu marca y optimizamos cada detalle para que tu presencia online sea profesional y efectiva.' }
+      ];
+  
+      // 2) Generar DOM
+      const grid = document.querySelector('.services-grid');
+      services.forEach((svc, i) => {
+        const idx = String(i+1).padStart(2,'0');
+        const card = document.createElement('div');
+        card.classList.add('service-card');
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div>
+                <div class="card-number">
+                  <!-- Ejemplo de SVG decorativo -->
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+                  </svg>
+                  <span>${idx}</span>
+                </div>
+                <h3 class="service-name">${svc.name}</h3>
+              </div>
+              <button class="btn-more" aria-label="Ver más sobre ${svc.name}">Ver más +</button>
+            </div>
+            <div class="card-face card-back">
+              <button class="btn-close" aria-label="Cerrar">✕</button>
+              <h3 class="service-name">${svc.name}</h3>
+              <p class="description">${svc.desc}</p>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+  
+      // 3) Lógica de flip con Event Delegation
+      grid.addEventListener('click', e => {
+        const card = e.target.closest('.service-card');
+        if (!card) return;
+        if (e.target.matches('.btn-more')) {
+          card.classList.add('flipped');
+        }
+        if (e.target.matches('.btn-close')) {
+          card.classList.remove('flipped');
+        }
+      });
+    })();
+    </script>
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.main-nav');
@@ -579,15 +729,6 @@
       gsap.to('#hero h1',{opacity:1,y:0,duration:1});
       gsap.to('#hero p',{opacity:1,y:0,duration:1,delay:.3});
       gsap.to('#hero .btn',{opacity:1,y:0,duration:1,delay:.6});
-      document.querySelectorAll('#stats .stat h3').forEach(el=>
-        gsap.fromTo(el,{innerText:0},{ 
-          innerText:el.dataset.count,
-          duration:2,
-          ease:'power1.in',
-          snap:{innerText:1},
-          scrollTrigger:{ trigger:el, start:'top 80%' }
-        })
-      );
       const sec = document.getElementById('services'),
             canvas = document.getElementById('services-canvas'),
             renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
@@ -615,38 +756,38 @@
       });
     });
   </script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+  
+    document.querySelectorAll('#stats .stat h3').forEach(el => {
+      // 1) Extraigo prefijo y valor numérico
+      const raw     = el.dataset.count;                            // e.g. "+20"
+      const prefix  = raw.charAt(0).match(/[+\-]/) ? raw.charAt(0) : '';
+      const endValue = parseInt(raw.replace(/[+\-]/, ''), 10);
+  
+      // 2) Creo obj para animar
+      const obj = { val: 0 };
+  
+      // 3) Animo obj.val y en onUpdate vuelco al innerText
+      gsap.to(obj, {
+        val: endValue,
+        duration: 3,
+        ease: 'power1.in',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+          once: true
+        },
+        onUpdate() {
+          el.innerText = prefix + Math.round(obj.val);
+        }
+      });
+    });
+  </script>
+  
   <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/script.js"></script>
-  <script>  
-var swiper = new Swiper(".slide-content", {
-    slidesPerView: 3,
-    spaceBetween: 25,
-    loop: true,
-    centerSlide: 'true',
-    fade: 'true',
-    grabCursor: 'true',
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints:{
-        0: {
-            slidesPerView: 1,
-        },
-        520: {
-            slidesPerView: 2,
-        },
-        950: {
-            slidesPerView: 3,
-        },
-    },
-  });
-  </script>
   <script>
     range.oninput = () =>
     document.body.style.setProperty('--pos', range.value + '%')
