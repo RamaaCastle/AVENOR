@@ -31,23 +31,191 @@
     a { color: inherit; text-decoration: none; }
     header { position: fixed; top: 0; width: 100%; background: transparent; z-index: 1000; transition: background .5s ease, backdrop-filter .5s ease; }
     header.scrolled { background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .nav ul { display: flex; gap: 2rem; list-style: none; position: relative; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background: var(--fg); }
-    @media (max-width: 768px) {
-      .nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background: var(--bg); flex-direction: column; padding: 4rem 1rem; gap: 1.5rem; transition: right var(--transition); }
-      .nav ul.active { right: 0; }
-      .hamburger { display: flex; }
-    }
     .logo-container { width:140px; }
-.logo-svg { width: 100%; height: auto; transition: all 0.3s ease-in-out;}
-#VENOR { clip-path: inset(0 0 0 0); transition: clip-path 0.7s ease, opacity 0.7s ease; opacity: 1;}
-header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
+    .logo-svg { width: 100%; height: auto; transition: all 0.3s ease-in-out;}
+    .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
-.container { width:85%; max-width:1400px; margin:0 auto; padding:2rem 0; }
-.btn { background:var(--accent); color:var(--bg); padding:.75rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; transition:transform .3s; }
-.btn:hover { transform:scale(1.05); }
+
+.logo-container img {
+  height: 40px;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  transition: background 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff7300;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ff7300;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+.contact-btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn-contacto {
+  background-color:#b85900;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-contacto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 255, 193, 0.3);
+}
+
+    #VENOR { clip-path: inset(0 0 0 0); transition: clip-path 0.7s ease, opacity 0.7s ease; opacity: 1;}
+    header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
+    }
+
+    /* General */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Línea de hamburguesa */
+.hamburger {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  display: block;
+  transition: background 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  transition: transform 0.3s ease, top 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* Animación a cruz */
+.menu-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* Menú responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  header {  background: #000000; }
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    
+  }
+
+  .main-nav .scrolled { background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
+
+  .main-nav.open {
+    background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
+    max-height: 300px;
+  }
+
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+
+  .contact-btn-container {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+    .container { width:85%; max-width:1400px; margin:0 auto; padding:2rem 0; }
+    .btn { background:var(--accent); color:var(--bg); padding:.75rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; transition:transform .3s; }
+    .btn:hover { transform:scale(1.05); }
     #hero { position:relative;  overflow:hidden; }
     #hero video { width: 100%; height: auto; filter:brightness(0.5); }
     #hero .overlay { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; padding:0 1rem; }
@@ -67,27 +235,13 @@ header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
 .button{  border: none;  font-size: 16px;  color: #ffffff;  padding: 8px 16px;  background-color: #ff6600;  border-radius: 6px;  margin: 14px;  cursor: pointer;  transition: all 0.3s ease;}
 .button:hover{  background: #8d3901;}
 .swiper-navBtn{  color: #ff6600;  transition: color 0.3s ease;}
-.swiper-navBtn:hover{
-  color: #8d3901;
-}
+.swiper-navBtn:hover{ color: #8d3901;}
 .swiper-navBtn::before,
-.swiper-navBtn::after{
-  font-size: 35px;
-}
-.swiper-button-next{
-  right: 0;
-}
-.swiper-button-prev{
-  left: 0;
-}
-.swiper-pagination-bullet{
-  background-color: #ff6600;
-  opacity: 1;
-}
-.swiper-pagination-bullet-active{
-  background-color: #8d3901;
-}
-
+.swiper-navBtn::after{  font-size: 35px;}
+.swiper-button-next{  right: 0;}
+.swiper-button-prev{  left: 0;}
+.swiper-pagination-bullet{  background-color: #ff6600;  opacity: 1;}
+.swiper-pagination-bullet-active{  background-color: #8d3901;}
 @media screen and (max-width: 768px) {
   .slide-content{
     margin: 0 10px;
@@ -95,26 +249,15 @@ header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
   .swiper-navBtn{
     display: none;
   }
-}
-
-
-
-
-    /* Stats */
-    #stats { display:flex; justify-content:space-around; flex-wrap:wrap; gap:2rem; padding:4rem 0; }
-    #stats .stat { text-align:center; z-index:2; }
-    #stats .stat h3 { font-size:3rem; color:var(--accent); }
-
-    /* Team */
-    #team { padding:6rem 0; }
-    #team h2 { text-align:center; margin-bottom:3rem; }
-    .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
-    .team-card { background:rgba(255,255,255,0.05); padding:2rem; border-radius:var(--radius); text-align:center; }
-    .team-card img { width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:1rem; }
-
-    /* Trust (continuous) */
-/*slider*/
-
+} 
+#stats { display:flex; justify-content:space-around; flex-wrap:wrap; gap:2rem; padding:4rem 0; }
+#stats .stat { text-align:center; z-index:2; }
+#stats .stat h3 { font-size:3rem; color:var(--accent); }
+#team { padding:6rem 0; }
+#team h2 { text-align:center; margin-bottom:3rem; }
+.team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+.team-card { background:rgba(255,255,255,0.05); padding:2rem; border-radius:var(--radius); text-align:center; }
+.team-card img { width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:1rem; }
 .slider-inmobiliarias {
   padding: 4rem 2rem;
   background-color: #000; /* Fondo negro */
@@ -228,9 +371,9 @@ header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
   <div id="progress"></div>
 
   <header>
-    <nav class="nav container">
-      <div class="logo-container">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 255">
+    <div class="container header-content">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 255">
             <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
             <defs>
               <style>
@@ -252,15 +395,26 @@ header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
               </g>
             </g>
           </svg>
+        </div>
+      <!-- Botón hamburguesa -->
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <span class="hamburger"></span>
+      </button>
+  
+      <!-- Navegación -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li class="mobile-only"><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+  
+      <!-- Botón de contacto desktop -->
+      <div class="contact-btn-container">
+        <a href="#contacto" class="btn-contacto">Contacto</a>
       </div>
-      <ul id="menu">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#services">Servicios</a></li>
-        <li><a href="#team">Equipo</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-    </nav>
   </header>
   <section id="hero">
     <video src="./img/open.mp4" autoplay muted loop playsinline></video>
@@ -399,6 +553,15 @@ header.scrolled #VENOR {  clip-path: inset(0 100% 0 0); opacity: 0;
     </div>
   </footer>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+  
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      menuToggle.classList.toggle('active'); // 👈 activa la cruz
+    });
+  </script>
   <script>
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
