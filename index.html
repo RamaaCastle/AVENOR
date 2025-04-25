@@ -1,726 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- --- SEO BÁSICO --- -->
-  <title>Avenor | Marketing inmobiliario 360 ° – Fotos, tours y anuncios que venden</title>
-  <meta name="description" content="Avenor genera más visitas y leads para desarrolladores e inmobiliarias con fotografía profesional, amueblamiento virtual, tours 360 ° y campañas publicitarias de alto rendimiento.">
-
-  <link rel="canonical" href="https://avenorproductions.com/">
-  <meta name="robots" content="index,follow">
-
-  <!-- --- OPEN GRAPH & TWITTER --- -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://avenorproductions.com/">
-  <meta property="og:title" content="Avenor | Marketing inmobiliario 360 °">
-  <meta property="og:description" content="Fotos, tours 360 °, amueblamiento virtual y anuncios que aceleran tus ventas inmobiliarias.">
-  <meta property="og:image" content="https://avenorproductions.com/img/og-preview.jpg"> <!-- cambia por tu img -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Avenor | Marketing inmobiliario 360 °">
-  <meta name="twitter:description" content="Fotos, tours 360 °, amueblamiento virtual y anuncios que aceleran tus ventas inmobiliarias.">
-  <meta name="twitter:image" content="https://avenorproductions.com/img/og-preview.jpg">
-
-  <!-- --- ICONOS & TEMA --- -->
-  <link rel="icon" href="/logo.webp">
-  <meta name="theme-color" content="#000000">
-
-  <!-- --- RENDIMIENTO --- -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- --- ESTILOS --- -->
-  <style>
-  /* --- ESTILOS --------------------------------------------------------- */
-:root {
-  --bg: #000;
-  --fg: #fff;
-  --accent: #ff6600;
-  --transition: 0.6s;
-  --radius: 1rem;
-  --text: 'Inter', sans-serif;
-  --card-height: 300px;
-  --card-bg: #fff;
-  --card-radius: 10px;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --black: #000
-  --white: #fff
-}
-
-/* Reset & base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--text);
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Header */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: transparent;
-  z-index: 1000;
-  transition: background 0.5s ease, backdrop-filter 0.5s ease;
-}
-
-header.scrolled {
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-}
-
-.logo-container {
-  width: 140px;
-}
-
-.logo-svg {
-  width: 100%;
-  height: auto;
-  transition: all 0.3s ease-in-out;
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.logo-container img {
-  height: 40px;
-}
-
-.main-nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  transition: background 0.5s ease, backdrop-filter 0.5s ease;
-}
-
-.main-nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #ff7300;
-  transition: width 0.3s ease;
-}
-
-.main-nav a:hover {
-  color: #ff7300;
-}
-
-.main-nav a:hover::after {
-  width: 100%;
-}
-
-.contact-btn-container {
-  display: flex;
-  align-items: center;
-}
-
-.btn-contacto {
-  background-color: #b85900;
-  color: #ffffff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-contacto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 255, 193, 0.3);
-}
-
-#VENOR {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.7s ease, opacity 0.7s ease;
-  opacity: 1;
-}
-
-header.scrolled #VENOR {
-  clip-path: inset(0 100% 0 0);
-  opacity: 0;
-}
-
-/* General */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 999;
-}
-
-/* Línea de hamburguesa */
-.hamburger {
-  position: relative;
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  display: block;
-  transition: background 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  transition: transform 0.3s ease, top 0.3s ease;
-}
-
-.hamburger::before {
-  top: -8px;
-}
-
-.hamburger::after {
-  top: 8px;
-}
-
-/* Animación a cruz */
-.menu-toggle.active .hamburger {
-  background-color: transparent;
-}
-
-.menu-toggle.active .hamburger::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-
-.menu-toggle.active .hamburger::after {
-  transform: rotate(-45deg);
-  top: 0;
-}
-
-/* Menú responsive */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  header {
-    background: #000000;
-  }
-
-  .main-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .main-nav .scrolled {
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-  }
-
-  .main-nav.open {
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    max-height: 300px;
-  }
-
-  .main-nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
-  }
-
-  .contact-btn-container {
-    display: none;
-  }
-
-  .mobile-only {
-    display: block;
-  }
-}
-
-@media (min-width: 769px) {
-  .mobile-only {
-    display: none;
-  }
-}
-
-/* Container & botones */
-.container {
-  width: 85%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.btn {
-  background: var(--accent);
-  color: var(--bg);
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* Hero */
-#hero {
-  position: relative;
-  overflow: hidden;
-}
-
-#hero video {
-  width: 100%;
-  height: auto;
-  filter: brightness(0.5);
-}
-
-#hero .overlay {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-#hero h1,
-#hero p,
-#hero .btn {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-/* canvas ocupa TODO el área de .services-section */
-#particles-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Contenido encima del canvas */
-.services-section > *:not(canvas) {
-  z-index: 1;
-}
-
-.services-section {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.services-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-/* GRID 3 columnas / 1 en móvil */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
-}
-
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Perspectiva para el flip */
-.service-card {
-  perspective: 1200px;
-  height: var(--card-height);
-  margin: 10px;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform var(--transition);
-}
-
-.service-card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Caras front/back */
-.card-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border: 2px solid #ff6600;
-  background: #000000;
-  box-shadow: var(--card-shadow);
-  text-align: center;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-}
-
-/* Header: número + título */
-.card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.card-number {
-  top: 10%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  margin-right: 0.75rem;
-}
-
-.card-number svg {
-  width: 32px;
-  height: 32px;
-  fill: var(--accent);
-  margin-right: 0.4rem;
-}
-
-.card-number span {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.service-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* Botones */
-.btn-more {
-  position: absolute;
-  bottom: 10%;
-}
-
-.btn-more,
-.btn-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--btn-color);
-  transition: color 0.3s;
-}
-
-.btn-more:hover,
-.btn-close:hover {
-  color: var(--btn-hover);
-}
-
-.btn-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-/* Descripción en la cara trasera */
-.description {
-  margin-top: 1rem;
-  line-height: 1.5;
-  flex: 1;
-  overflow-y: auto;
-}
-
-/* Stats */
-#stats {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 4rem 0;
-}
-
-#stats .stat {
-  text-align: center;
-  z-index: 2;
-}
-
-#stats .stat h3 {
-  font-size: 3rem;
-  color: var(--accent);
-}
-
-/* Equipo */
-#team {
-  padding: 6rem 0;
-}
-
-#team h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.team-card {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  );
-  padding: 2rem;
-  border-radius: var(--radius);
-  text-align: center;
-}
-
-.team-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-/* Slider inmobiliarias */
-.slider-inmobiliarias {
-  padding: 4rem 2rem;
-  background-color: #000;
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-}
-
-.titulo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.slider-titulo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.slider-container {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  width: calc(200%);
-  /* El doble para loop */
-  animation: slide 20s linear infinite;
-}
-
-.slider-track img {
-  width: 200px;
-  margin: 0 2rem;
-  object-fit: contain;
-  filter: grayscale(100%) brightness(1.2);
-  transition: transform 0.3s;
-}
-
-.slider-track img:hover {
-  transform: scale(1.05);
-  filter: none;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Image Compare */
-@layer demo {
-  .compare {
-    display: grid;
-  }
-
-  .compare > * {
-    grid-area: 1 / 1;
-  }
-
-  .compare > section {
-    display: grid;
-    place-content: center;
-  }
-
-  .before {
-    mask: linear-gradient(to right, #000 0, var(--pos, 50%), #ff660000 0);
-  }
-
-  .after {
-    mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
-  }
-
-  .compare > input[type='range'] {
-    z-index: 1;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .compare > input[type='range']::-webkit-slider-thumb {
-    appearance: none;
-    inline-size: 4px;
-    block-size: 100%;
-    background-color: CanvasText;
-  }
-
-  .compare > input[type='range']::-moz-range-thumb {
-    appearance: none;
-    inline-size: 4px;
-    block-size: 100dvh;
-    background-color: CanvasText;
-  }
-
-  img {
-    max-block-size: 80dvh;
-    max-inline-size: 100%;
-  }
-}
-
-/* Contacto */
-#contact {
-  padding: 6rem 0;
-}
-
-#contact h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-#contact form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
-}
-
-#contact input,
-#contact textarea {
-  padding: 1rem;
-  border-radius: var(--radius);
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--fg);
-}
-
-/* Footer */
-footer {
-  background: rgba(255, 255, 255, 0.1);
-  text-align: center;
-  padding: 2rem 1rem;
-}
-  </style>
-
-  <!-- --- DATOS ESTRUCTURADOS (JSON-LD) --- -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Avenor",
-    "url":"https://avenorproductions.com",
-    "logo":"https://avenorproductions.com/logo.webp",
-    "sameAs":[
-      "https://www.linkedin.com/company/avenorproductions/"
-    ],
-    "founder":"Ramiro Castillo",
-    "foundingDate":"2025",
-    "email":"avenorproductions@gmail.com"
-  }
-  </script>
-
-  <!-- Google Analytics (defer) -->
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M544DS7522"></script>
-  <script defer>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config','G-M544DS7522');
-  </script>
-
-  <!-- Three.js & GSAP (una sola vez) -->
-  <script defer src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Avenor | Marketing inmobiliario 360° – Fotos, tours y anuncios que venden</title>
+    <meta name="description" content="Avenor genera más visitas y leads para desarrolladores e inmobiliarias con fotografía profesional, amueblamiento virtual, tours 360° y campañas publicitarias de alto rendimiento.">
+    <link rel="canonical" href="https://avenorproductions.com/">
+    <meta name="robots" content="index,follow">
+  
+    <!-- Open Graph / Twitter (igual que antes) -->
+    <meta property="og:image" content="https://avenorproductions.com/img/og-preview.jpg">
+  
+    <!-- Iconos & tema -->
+    <link rel="icon" href="/logo.webp">
+    <meta name="theme-color" content="#000000">
+  
+    <!-- ---------- RENDIMIENTO CRÍTICO ---------- -->
+    <!-- 1) Preconecta a Google Fonts y CARGA SÓLO 2 PESOS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+          rel="stylesheet"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+            rel="stylesheet">
+    </noscript>
+  
+    <!-- 2) CSS crítico inline (≈4 KB) – todo lo demás a styles.css -->
+    <style>
+      :root{--bg:#000;--fg:#fff;--accent:#ff6600;--radius:1rem;--font:'Inter',sans-serif;}
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:var(--font);background:var(--bg);color:var(--fg);overflow-x:hidden}
+      a{color:inherit;text-decoration:none}
+      /* header + hero crítico */
+      header{position:fixed;top:0;width:100%;display:flex;justify-content:center;
+              transition:background .5s ease,backdrop-filter .5s ease;z-index:1000}
+      header.scrolled{background:rgba(0,0,0,.6);backdrop-filter:blur(10px)}
+      .header-content{width:90%;max-width:1200px;display:flex;align-items:center;
+                      justify-content:space-between;padding:.5rem 0}
+      .logo-container{width:140px}
+      .menu-toggle{background:none;border:0;width:24px;height:24px;display:none}
+      .hamburger,.hamburger::before,.hamburger::after{background:#fff;height:2px;width:24px;
+         position:absolute;transition:.3s}
+      .hamburger::before{content:'';top:-8px;position:absolute}
+      .hamburger::after{content:'';top:8px;position:absolute}
+      #hero{position:relative;overflow:hidden;min-height:60vh}
+      #hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
+      #hero .overlay{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:1rem}
+      #hero h1{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.5rem}
+      #hero p{max-width:32ch;margin:0 auto 1rem}
+      .btn{display:inline-block;background:var(--accent);color:#000;padding:.7rem 1.4rem;
+           border-radius:999px;font-weight:600;transition:transform .3s}
+      .btn:hover{transform:scale(1.05)}
+      /* móvil menú */
+      @media(max-width:768px){
+        .menu-toggle{display:block;position:relative;z-index:1001}
+        nav{position:fixed;inset:0 0 0 auto;width:70%;max-width:300px;background:#000;
+           transform:translateX(100%);transition:transform .4s ease}
+        nav.open{transform:translateX(0)}
+        nav ul{list-style:none;padding:4rem 1rem;display:grid;gap:1.2rem}
+      }
+    </style>
+  
+    <!-- 3) Diferir el resto (styles.css ≈15 KB min/gzip) -->
+    <link rel="preload" as="style" href="styles.css">
+    <link href="styles.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="styles.css" rel="stylesheet"></noscript>
+  
+    <!-- ---------- DATOS ESTRUCTURADOS, ANALYTICS ---------- -->
+    <script type="application/ld+json">{ "@context":"https://schema.org", "@type":"Organization",
+      "name":"Avenor","url":"https://avenorproductions.com","logo":"/logo.webp",
+      "sameAs":["https://www.linkedin.com/company/avenorproductions/"] }</script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M544DS7522"></script>
+    <script defer>
+      window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());gtag('config','G-M544DS7522');
+    </script>
+  </head>
 
 <body>
   <!-- ====== CABECERA ====== -->
@@ -772,7 +132,12 @@ footer {
 
   <!-- ====== HERO ====== -->
   <section id="hero">
-    <video src="./img/open.mp4" autoplay muted loop playsinline></video>
+    <video src="img/open.mp4" autoplay muted loop playsinline
+      width="900" height="600"
+      loading="lazy"
+      poster="img/living.webp"
+      media="(min-width:768px)">
+    </video>
 
     <div class="overlay">
       <h1>Más visitas y leads para tu proyecto inmobiliario en 30 días</h1>
@@ -859,5 +224,20 @@ footer {
 
   <!-- ====== JS DE TU SITIO (idéntico al original, manteniendo una sola copia) ====== -->
   <script defer src="main.js"></script><!-- aconsejo separar tu JS a main.js -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  <script>
+    if('IntersectionObserver'in window){
+      const lazyParticles=entry=>{
+        if(entry.isIntersecting){
+          const s=document.createElement('script');
+          s.src='particles.js';document.body.appendChild(s);
+          observer.disconnect();
+        }
+      };
+      const observer=new IntersectionObserver(([e])=>lazyParticles(e),{rootMargin:'200px'});
+      observer.observe(document.querySelector('#services'));
+    }
+  </script>
 </body>
 </html>
