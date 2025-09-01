@@ -4,80 +4,117 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Avenor — Real Estate Productions</title>
-  <meta name="description" content="Avenor — Marketing inmobiliario, fotografía, planos, amueblamiento virtual y tour 360." />
+  <!--
+    Esta versión de la landing aplica un diseño arquitectónico minimalista y
+    refinado. Utiliza la paleta monocroma blanco‑negro del proyecto,
+    incorpora el logotipo oficial desde assets y reestructura la jerarquía
+    visual para transmitir precisión y sobriedad. Las secciones están
+    cuidadosamente espaciadas y se eliminó el elemento 3D del hero para
+    privilegiar una composición limpia con una ilustración vectorial que
+    recuerda a planos arquitectónicos. Todas las interacciones y llamadas a
+    la acción permanecen intactas.
+  -->
+  <meta name="description" content="Avenor — Marketing inmobiliario, fotografía, planos, amueblamiento virtual y tours 360 con estética de arquitectura moderna." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <!-- Header fijo, negro, blur suave -->
-  <header class="header">
+  <!-- Cabecera fija con logotipo e iconografía de navegación -->
+  <header class="header" id="top">
     <div class="container header__inner">
-      <a href="#top" class="logo" aria-label="Avenor Home">
-        <!-- Logo Avenor en texto para mantener B/N absoluto -->
-        <span class="logo__mark">A</span><span class="logo__type">venor</span>
+      <a href="#top" class="logo" aria-label="Inicio">
+        <!-- Logo oficial en versión monocroma -->
+        <img src="./logo.webp" alt="Avenor" class="logo__img" />
       </a>
-
       <nav class="nav">
         <a href="#servicios">Servicios</a>
         <a href="#galeria">Galería</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a>
       </nav>
-
       <div class="header__cta">
         <a class="btn btn--ghost" href="./admin.html" aria-label="Panel Administrativo">Admin</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero minimalista -->
-  <section id="top" class="hero">
-    <div class="container hero__grid">
-      <div class="hero__copy">
-        <h1 class="h1">Marketing inmobiliario <br>con estética de <span class="underline">arquitectura</span>.</h1>
-        <p class="lead">
-          Branding, fotografía, planos, amueblamiento virtual y tours 360. Blanco y negro. Preciso. Atemporal.
-        </p>
+  <!-- Hero principal: tagline potente + ilustración de planos -->
+  <section class="hero">
+    <div class="container hero__layout">
+      <div class="hero__content">
+        <h1 class="h1">Marketing inmobiliario con&nbsp;<br><span class="highlight">precisión arquitectónica</span>.</h1>
+        <p class="lead">Creamos producciones inmobiliarias con la estética y pulcritud de un estudio de arquitectura. Menos es más, siempre.</p>
         <div class="hero__cta">
           <a href="#galeria" class="btn">Ver galería</a>
           <a href="#contacto" class="btn btn--ghost">Solicitar propuesta</a>
         </div>
       </div>
-      <div class="hero__frame">
-        <!-- Marco tipo maqueta arquitectónica -->
-        <div class="frame-3d">
-          <div class="frame-3d__box"></div>
-          <div class="frame-3d__box frame-3d__box--2"></div>
-          <div class="frame-3d__box frame-3d__box--3"></div>
-        </div>
+      <div class="hero__graphic" aria-hidden="true">
+        <!-- Ilustración vectorial inspirada en planos arquitectónicos -->
+        <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="10" y="10" width="60" height="80" rx="2" />
+          <rect x="90" y="30" width="90" height="40" rx="2" />
+          <line x1="60" y1="100" x2="190" y2="160" />
+          <polyline points="10,100 10,150 70,190 190,150 190,90" />
+        </svg>
       </div>
     </div>
   </section>
 
-  <!-- Servicios -->
+  <!-- Sección de servicios -->
   <section id="servicios" class="section">
     <div class="container">
       <div class="section__head">
         <h2 class="h2">Servicios</h2>
         <p class="muted">Soluciones integrales para desarrolladores, inmobiliarias y arquitectos.</p>
       </div>
-      <div class="cards">
-        <article class="card">
-          <h3>Fotografía & Video</h3>
-          <p>Producción en alto contraste. Composición limpia. Narrativa espacial.</p>
+      <div class="services">
+        <!-- Fotografía y video -->
+        <article class="service">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <h3 class="service__title">Fotografía &amp; Video</h3>
+          <p class="service__desc">Producción en alto contraste. Composición limpia. Narrativa espacial.</p>
         </article>
-        <article class="card">
-          <h3>Amueblamiento Virtual</h3>
-          <p>Estilismo minimalista, materiales neutros y luz controlada para maximizar interés.</p>
+        <!-- Amueblamiento virtual -->
+        <article class="service">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 14v6M20 14v6M8 14h8l2-5H6l2 5z" />
+              <path d="M12 9V5m4 4V5" />
+            </svg>
+          </div>
+          <h3 class="service__title">Amueblamiento virtual</h3>
+          <p class="service__desc">Estilismo minimalista, materiales neutros y luz controlada para maximizar interés.</p>
         </article>
-        <article class="card">
-          <h3>Planos & 3D</h3>
-          <p>Plantas claras, axonometrías y renders sobrios orientados a venta.</p>
+        <!-- Planos & 3D -->
+        <article class="service">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 3 3 9 12 15 21 9 12 3" />
+              <polyline points="3 9 3 17 12 23 21 17 21 9" />
+              <polyline points="12 15 12 23" />
+            </svg>
+          </div>
+          <h3 class="service__title">Planos &amp; 3D</h3>
+          <p class="service__desc">Plantas claras, axonometrías y renders sobrios orientados a venta.</p>
         </article>
-        <article class="card">
-          <h3>Tours 360</h3>
-          <p>Recorridos fluidos, hotspots discretos y jerarquía informativa.</p>
+        <!-- Tours 360 -->
+        <article class="service">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.05 11a8 8 0 0 1 15.9 0" />
+              <path d="M4 11v2a1 1 0 0 0 1 1h3" />
+              <path d="M20 13v-2a1 1 0 0 0-1-1h-3" />
+            </svg>
+          </div>
+          <h3 class="service__title">Tours 360</h3>
+          <p class="service__desc">Recorridos fluidos, hotspots discretos y jerarquía informativa.</p>
         </article>
       </div>
     </div>
@@ -88,10 +125,8 @@
     <div class="container">
       <div class="section__head">
         <h2 class="h2">Galería</h2>
-        <p class="muted">Selección curada. B&N. Arquitectura, interiores y staging.</p>
+        <p class="muted">Selección curada. Blanco y negro. Arquitectura, interiores y staging.</p>
       </div>
-
-      <!-- Filtros simples -->
       <div class="filterbar">
         <button class="chip is-active" data-filter="all">Todo</button>
         <button class="chip" data-filter="interiores">Interiores</button>
@@ -99,11 +134,7 @@
         <button class="chip" data-filter="staging">Staging</button>
         <button class="chip" data-filter="planos">Planos</button>
       </div>
-
-      <!-- Grid Masonry -->
       <div id="galleryGrid" class="masonry" aria-live="polite"></div>
-
-      <!-- Loader / paginación -->
       <div class="loader" id="loader" hidden>
         <div class="spinner"></div>
       </div>
@@ -118,13 +149,10 @@
     <div class="container two-col">
       <div>
         <h2 class="h2">Nosotros</h2>
-        <p>
-          Avenor — Real Estate Productions. Dirección de arte aplicada a producto inmobiliario.
-          Trabajamos con una única premisa: **menos es más**.
-        </p>
+        <p>Somos Avenor: dirección de arte aplicada al producto inmobiliario. Trabajamos bajo una premisa clara: <strong>menos es más</strong>.</p>
       </div>
       <ul class="list">
-        <li>Estética B/N, foco en forma, luz y proporción.</li>
+        <li>Estética en blanco y negro, foco en forma, luz y proporción.</li>
         <li>Procesos medibles, entregables claros, feedback rápido.</li>
         <li>Integración con marketing de performance.</li>
       </ul>
@@ -135,7 +163,7 @@
   <section id="contacto" class="section section--tight">
     <div class="container contact">
       <h2 class="h2">Contacto</h2>
-      <p class="muted">Buenos Aires, Argentina · Trabajamos remoto / on-site</p>
+      <p class="muted">Buenos Aires, Argentina · trabajamos remoto / on‑site</p>
       <a class="btn" href="mailto:hola@avenorproductions.com">hola@avenorproductions.com</a>
     </div>
   </section>
