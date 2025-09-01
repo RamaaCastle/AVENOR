@@ -1,852 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- --- SEO BÁSICO --- -->
-  <title>Avenor | Marketing inmobiliario 360 ° – Fotos, tours y anuncios que venden</title>
-  <meta name="description" content="Avenor genera más visitas y leads para desarrolladores e inmobiliarias con fotografía profesional, amueblamiento virtual, tours 360 ° y campañas publicitarias de alto rendimiento.">
-
-  <link rel="canonical" href="https://avenorproductions.com/">
-  <meta name="robots" content="index,follow">
-
-  <!-- --- OPEN GRAPH & TWITTER --- -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://avenorproductions.com/">
-  <meta property="og:title" content="Avenor | Marketing inmobiliario 360 °">
-  <meta property="og:description" content="Fotos, tours 360 °, amueblamiento virtual y anuncios que aceleran tus ventas inmobiliarias.">
-  <meta property="og:image" content="https://avenorproductions.com/img/og-preview.jpg"> <!-- cambia por tu img -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Avenor | Marketing inmobiliario 360 °">
-  <meta name="twitter:description" content="Fotos, tours 360 °, amueblamiento virtual y anuncios que aceleran tus ventas inmobiliarias.">
-  <meta name="twitter:image" content="https://avenorproductions.com/img/og-preview.jpg">
-
-  <!-- --- ICONOS & TEMA --- -->
-  <link rel="icon" href="/logo.webp">
-  <meta name="theme-color" content="#000000">
-
-  <!-- --- RENDIMIENTO --- -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avenor — Real Estate Productions</title>
+  <meta name="description" content="Avenor — Marketing inmobiliario, fotografía, planos, amueblamiento virtual y tour 360." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- --- ESTILOS --- -->
-  <style>
-  /* --- ESTILOS --------------------------------------------------------- */
-:root {
-  --bg: #000;
-  --fg: #fff;
-  --accent: #ff6600;
-  --transition: 0.6s;
-  --radius: 1rem;
-  --text: 'Inter', sans-serif;
-  --card-height: 300px;
-  --card-bg: #fff;
-  --card-radius: 10px;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --black: #000
-  --white: #fff
-}
-
-/* Reset & base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--text);
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Header */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: transparent;
-  z-index: 1000;
-  transition: background 0.5s ease, backdrop-filter 0.5s ease;
-}
-
-header.scrolled {
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-}
-
-.logo-container {
-  width: 140px;
-}
-
-.logo-svg {
-  width: 100%;
-  height: auto;
-  transition: all 0.3s ease-in-out;
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.logo-container img {
-  height: 40px;
-}
-
-.main-nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  transition: background 0.5s ease, backdrop-filter 0.5s ease;
-}
-
-.main-nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #ff7300;
-  transition: width 0.3s ease;
-}
-
-.main-nav a:hover {
-  color: #ff7300;
-}
-
-.main-nav a:hover::after {
-  width: 100%;
-}
-
-.contact-btn-container {
-  display: flex;
-  align-items: center;
-}
-
-.btn-contacto {
-  background-color: #b85900;
-  color: #ffffff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-contacto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 255, 193, 0.3);
-}
-
-#VENOR {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.7s ease, opacity 0.7s ease;
-  opacity: 1;
-}
-
-header.scrolled #VENOR {
-  clip-path: inset(0 100% 0 0);
-  opacity: 0;
-}
-
-/* General */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 999;
-}
-
-/* Línea de hamburguesa */
-.hamburger {
-  position: relative;
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  display: block;
-  transition: background 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 2px;
-  background-color: white;
-  transition: transform 0.3s ease, top 0.3s ease;
-}
-
-.hamburger::before {
-  top: -8px;
-}
-
-.hamburger::after {
-  top: 8px;
-}
-
-/* Animación a cruz */
-.menu-toggle.active .hamburger {
-  background-color: transparent;
-}
-
-.menu-toggle.active .hamburger::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-
-.menu-toggle.active .hamburger::after {
-  transform: rotate(-45deg);
-  top: 0;
-}
-
-/* Menú responsive */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  header {
-    background: #000000;
-  }
-
-  .main-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .main-nav .scrolled {
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-  }
-
-  .main-nav.open {
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    max-height: 300px;
-  }
-
-  .main-nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
-  }
-
-  .contact-btn-container {
-    display: none;
-  }
-
-  .mobile-only {
-    display: block;
-  }
-}
-
-@media (min-width: 769px) {
-  .mobile-only {
-    display: none;
-  }
-}
-
-/* Container & botones */
-.container {
-  width: 85%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.btn {
-  background: var(--accent);
-  color: var(--bg);
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* Hero */
-#hero {
-  position: relative;
-  overflow: hidden;
-}
-
-#hero video {
-  width: 100%;
-  height: auto;
-  filter: brightness(0.5);
-}
-
-
-#hero h1,
-#hero p,
-#hero .btn {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-/* canvas ocupa TODO el área de .services-section */
-#particles-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Contenido encima del canvas */
-.services-section > *:not(canvas) {
-  z-index: 1;
-}
-
-.services-section {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.services-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-/* GRID 3 columnas / 1 en móvil */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
-}
-
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Perspectiva para el flip */
-.service-card {
-  perspective: 1200px;
-  height: var(--card-height);
-  margin: 10px;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform var(--transition);
-}
-
-.service-card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Caras front/back */
-.card-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border: 2px solid #ff6600;
-  background: #000000;
-  box-shadow: var(--card-shadow);
-  text-align: center;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-}
-
-/* Header: número + título */
-.card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.card-number {
-  top: 10%;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  margin-right: 0.75rem;
-}
-
-.card-number svg {
-  width: 32px;
-  height: 32px;
-  fill: var(--accent);
-  margin-right: 0.4rem;
-}
-
-.card-number span {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.service-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* Botones */
-.btn-more {
-  position: absolute;
-  bottom: 10%;
-}
-
-.btn-more,
-.btn-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--btn-color);
-  transition: color 0.3s;
-}
-
-.btn-more:hover,
-.btn-close:hover {
-  color: var(--btn-hover);
-}
-
-.btn-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-/* Descripción en la cara trasera */
-.description {
-  margin-top: 1rem;
-  line-height: 1.5;
-  flex: 1;
-  overflow-y: auto;
-}
-
-/* Stats */
-#stats {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 4rem 0;
-}
-
-#stats .stat {
-  text-align: center;
-  z-index: 2;
-}
-
-#stats .stat h3 {
-  font-size: 3rem;
-  color: var(--accent);
-}
-
-/* Equipo */
-#team {
-  padding: 6rem 0;
-}
-
-#team h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.team-card {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.05
-  );
-  padding: 2rem;
-  border-radius: var(--radius);
-  text-align: center;
-}
-
-.team-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-/* Slider inmobiliarias */
-.slider-inmobiliarias {
-  padding: 4rem 2rem;
-  background-color: #000;
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-}
-
-.titulo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.slider-titulo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.slider-container {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  width: calc(200%);
-  /* El doble para loop */
-  animation: slide 20s linear infinite;
-}
-
-.slider-track img {
-  width: 200px;
-  margin: 0 2rem;
-  object-fit: contain;
-  filter: grayscale(100%) brightness(1.2);
-  transition: transform 0.3s;
-}
-
-.slider-track img:hover {
-  transform: scale(1.05);
-  filter: none;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Image Compare */
-@layer demo {
-  .compare {
-    display: grid;
-  }
-
-  .compare > * {
-    grid-area: 1 / 1;
-  }
-
-  .compare > section {
-    display: grid;
-    place-content: center;
-  }
-
-  .before {
-    mask: linear-gradient(to right, #000 0, var(--pos, 50%), #ff660000 0);
-  }
-
-  .after {
-    mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
-  }
-
-  .compare > input[type='range'] {
-    z-index: 1;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .compare > input[type='range']::-webkit-slider-thumb {
-    appearance: none;
-    inline-size: 4px;
-    block-size: 100%;
-    background-color: CanvasText;
-  }
-
-  .compare > input[type='range']::-moz-range-thumb {
-    appearance: none;
-    inline-size: 4px;
-    block-size: 100dvh;
-    background-color: CanvasText;
-  }
-
-  img {
-    max-block-size: 80dvh;
-    max-inline-size: 100%;
-  }
-}
-
-/* Contacto */
-#contact {
-  padding: 6rem 0;
-}
-
-#contact h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-#contact form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
-}
-
-#contact input,
-#contact textarea {
-  padding: 1rem;
-  border-radius: var(--radius);
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--fg);
-}
-
-/* Footer */
-footer {
-  background: rgba(255, 255, 255, 0.1);
-  text-align: center;
-  padding: 2rem 1rem;
-}
-  </style>
-
-  <!-- --- DATOS ESTRUCTURADOS (JSON-LD) --- -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Avenor",
-    "url":"https://avenorproductions.com",
-    "logo":"https://avenorproductions.com/logo.webp",
-    "sameAs":[
-      "https://www.linkedin.com/company/avenorproductions/"
-    ],
-    "founder":"Ramiro Castillo",
-    "foundingDate":"2025",
-    "email":"avenorproductions@gmail.com"
-  }
-  </script>
-
-  <!-- Google Analytics (defer) -->
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M544DS7522"></script>
-  <script defer>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config','G-M544DS7522');
-  </script>
-
-  <!-- Three.js & GSAP (una sola vez) -->
-  <script defer src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-
 <body>
-  <!-- ====== CABECERA ====== -->
-  <header>
-    <div class="container header-content" role="navigation" aria-label="Menú principal">
-      <a href="/" class="logo-container" aria-label="Inicio Avenor">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 255">
-          <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
-          <defs>
-            <style>
-              .st0 {
-                fill: #fff;
-              }
-            </style>
-          </defs>
-          <g id="A">
-            <path class="st0" d="M171.43,152.22l37.91,99.33h0c-13.11,5.02-27.81-1.54-32.83-14.65l-25.62-68.66,20.55-16.02ZM17.51,252.63L113.77,1.77c8.62,21.55,24.05,64.46,33.77,88.78,3.73,9.32,6.35,15.89,6.98,17.45,5.35-4.3,12.93-11.49,19.27-22.27,8.73-14.85,10.64-28.96,11.12-36.59.06.02.14.05.24.08,6.19,2.18,9.6,7.35,10.79,9.15,4.95,7.49,4.57,16.87,4.5,18.6-.9,22.37-29.59,49.66-31.62,51.56L17.51,252.63M114.08,68.83l-39.69,104.05c19.63-16.17,40.46-33.06,60.09-49.23l-20.39-54.83ZM122.82,88.55c4.78-4.8,11.59-10.67,20.68-15.96,10.74-6.25,20.74-9.41,28-11.1-.31,2.59-.95,6.28-2.36,10.52-1.21,3.63-3.96,10.61-13.79,22.22-4.94,5.83-12.2,13.48-22.25,21.29-3.43-8.99-6.85-17.98-10.28-26.97Z"/>
-          </g>
-          <g id="VENOR">
-            <g>
-              <path class="st0" d="M272.51,213.34l-37.51-111.61h26.14l25.52,87.56h.54l25.52-87.56h25.45l-37.51,111.61h-28.15Z"/>
-              <path class="st0" d="M453.6,213.34h-73.94v-111.61h73.94v19.26h-50.58v26.92h47.72v17.94h-47.72v28.15h50.58v19.34Z"/>
-              <path class="st0" d="M500.58,213.34v-111.61h19.49l52.13,72.71h.62v-72.71h22.35v111.61h-19.34l-52.21-73.09h-.7v73.09h-22.35Z"/>
-              <path class="st0" d="M748.03,157.57c0,35.5-20.81,57.7-53.83,57.7s-53.83-22.2-53.83-57.7,20.73-57.78,53.83-57.78,53.83,22.2,53.83,57.78ZM664.19,157.57c0,23.36,11.68,38.13,30.01,38.13s29.93-14.77,29.93-38.13-11.68-38.29-29.93-38.29-30.01,14.85-30.01,38.29Z"/>
-              <path class="st0" d="M816.51,213.34h-23.36v-111.61h45.71c25.68,0,40.38,13.54,40.38,35.58,0,14.31-7.42,26.68-20.26,31.71l23.51,44.32h-26.45l-20.81-40.84h-18.72v40.84ZM816.51,155.56h20.11c11.76,0,18.64-6.73,18.64-17.79s-7.27-17.79-18.87-17.79h-19.88v35.58Z"/>
-            </g>
-          </g>
-        </svg>
+  <!-- Header fijo, negro, blur suave -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Avenor Home">
+        <!-- Logo Avenor en texto para mantener B/N absoluto -->
+        <span class="logo__mark">A</span><span class="logo__type">venor</span>
       </a>
 
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
-
-      <nav class="main-nav" id="site-nav">
-        <ul>
-          <li><a href="#hero">Inicio</a></li>
-          <li><a href="#services">Servicios</a></li>
-          <li><a href="#team">Equipo</a></li>
-          <li class="mobile-only"><a href="#contact">Contacto</a></li>
-        </ul>
+      <nav class="nav">
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
       </nav>
 
-      <div class="contact-btn-container">
-        <a href="#contact" class="btn-contacto">Contacto</a>
+      <div class="header__cta">
+        <a class="btn btn--ghost" href="./admin.html" aria-label="Panel Administrativo">Admin</a>
       </div>
     </div>
   </header>
 
-  <!-- ====== HERO ====== -->
-  <section id="hero">
-    <video src="img/open.mp4" autoplay muted loop playsinline
-      width="900" height="600"
-      loading="lazy"
-      poster="img/living.webp"
-      media="(min-width:768px)">
-    </video>
-
-    <noscript><img src="./img/living.webp" alt="Vista de un living amueblado" loading="lazy"></noscript>
-  </section>
-
-  <!-- ====== SERVICIOS ====== -->
-  <section id="services" class="services-section">
-    <canvas id="particles-bg" aria-hidden="true"></canvas>
-    <h2 class="services-title">Servicios de marketing inmobiliario 360 °</h2>
-    <div class="services-grid"></div>
-  </section>
-
-  <!-- ====== SLIDER LOGOS ====== -->
-  <section class="slider-inmobiliarias" aria-labelledby="titulo-inmobiliarias">
-    <h2 id="titulo-inmobiliarias">Inmobiliarias que confían en nosotros</h2>
-    <div class="slider-container" role="list">
-      <div class="slider-track">
-        <img src="img/logo-cbr.webp" alt="Logo Colegio de Corredores CBR" loading="lazy">
-        <img src="img/remax-logo-blanco.webp" alt="Logo Remax" loading="lazy">
-        <img src="img/DEJTIAR.webp" alt="Logo Inmobiliaria Dejtiar" loading="lazy">
-        <!-- (…repetidos…) -->
+  <!-- Hero minimalista -->
+  <section id="top" class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <h1 class="h1">Marketing inmobiliario <br>con estética de <span class="underline">arquitectura</span>.</h1>
+        <p class="lead">
+          Branding, fotografía, planos, amueblamiento virtual y tours 360. Blanco y negro. Preciso. Atemporal.
+        </p>
+        <div class="hero__cta">
+          <a href="#galeria" class="btn">Ver galería</a>
+          <a href="#contacto" class="btn btn--ghost">Solicitar propuesta</a>
+        </div>
+      </div>
+      <div class="hero__frame">
+        <!-- Marco tipo maqueta arquitectónica -->
+        <div class="frame-3d">
+          <div class="frame-3d__box"></div>
+          <div class="frame-3d__box frame-3d__box--2"></div>
+          <div class="frame-3d__box frame-3d__box--3"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ====== AMUEBLAMIENTO VIRTUAL (BEFORE/AFTER) ====== -->
-  <section aria-labelledby="titulo-amueblamiento">
-    <h2 class="titulo" id="titulo-amueblamiento">Amueblamiento virtual</h2>
-
-    <div class="compare">
-      <section class="before"><img src="./img/living-vacio.webp" alt="Ambiente vacío" loading="lazy"></section>
-      <section class="after"><img src="./img/living.webp" alt="Ambiente amueblado virtualmente" loading="lazy"></section>
-      <input type="range" id="range" step="0.1" aria-label="Comparador de amueblamiento">
-    </div>
-  </section>
-
-  <!-- ====== MÉTRICAS ====== -->
-  <section id="stats" class="container" aria-label="Métricas de resultados">
-    <div class="stat"><h3 data-count="+20">0</h3><p>Proyectos</p></div>
-    <div class="stat"><h3 data-count="+10">0</h3><p>Clientes</p></div>
-    <div class="stat"><h3 data-count="+100">0</h3><p>Campañas</p></div>
-  </section>
-
-  <!-- ====== EQUIPO ====== -->
-  <section id="team" class="container" aria-labelledby="titulo-equipo">
-    <h2 id="titulo-equipo">Equipo</h2>
-    <div class="team-grid">
-      <div class="team-card">
-        <h3>Ramiro Castillo</h3>
-        <p>Founder → 2+ años en Paid Media, Fotografía y Diseño Web.</p>
-      </div>
-      <div class="team-card">
-        <h3>Giuliana Marcovecchio</h3>
-        <p>Co-Founder → 2+ años en Social Media y Producción Audiovisual.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== CONTACTO ====== -->
-  <section id="contact" class="container" aria-labelledby="titulo-contacto">
-    <h2 id="titulo-contacto">Contáctanos</h2>
-    <form action="https://formspree.io/f/xeogqepv" method="POST">
-      <input type="text" name="name" placeholder="Nombre completo" required>
-      <input type="email" name="email" placeholder="Correo electrónico" required>
-      <input type="tel" name="phone" placeholder="Teléfono">
-      <textarea name="message" rows="5" placeholder="Tu mensaje…" required></textarea>
-      <button class="btn" type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer>
+  <!-- Servicios -->
+  <section id="servicios" class="section">
     <div class="container">
-      <nav aria-label="Enlaces legales">
-        <a href="/politica-de-privacidad.html">Política de privacidad</a>
-      </nav>
-      <p>&copy; 2025 Avenor | Todos los derechos reservados</p>
+      <div class="section__head">
+        <h2 class="h2">Servicios</h2>
+        <p class="muted">Soluciones integrales para desarrolladores, inmobiliarias y arquitectos.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Fotografía & Video</h3>
+          <p>Producción en alto contraste. Composición limpia. Narrativa espacial.</p>
+        </article>
+        <article class="card">
+          <h3>Amueblamiento Virtual</h3>
+          <p>Estilismo minimalista, materiales neutros y luz controlada para maximizar interés.</p>
+        </article>
+        <article class="card">
+          <h3>Planos & 3D</h3>
+          <p>Plantas claras, axonometrías y renders sobrios orientados a venta.</p>
+        </article>
+        <article class="card">
+          <h3>Tours 360</h3>
+          <p>Recorridos fluidos, hotspots discretos y jerarquía informativa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería aesthetic (desde Firestore/Storage) -->
+  <section id="galeria" class="section section--tight">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="h2">Galería</h2>
+        <p class="muted">Selección curada. B&N. Arquitectura, interiores y staging.</p>
+      </div>
+
+      <!-- Filtros simples -->
+      <div class="filterbar">
+        <button class="chip is-active" data-filter="all">Todo</button>
+        <button class="chip" data-filter="interiores">Interiores</button>
+        <button class="chip" data-filter="exteriores">Exteriores</button>
+        <button class="chip" data-filter="staging">Staging</button>
+        <button class="chip" data-filter="planos">Planos</button>
+      </div>
+
+      <!-- Grid Masonry -->
+      <div id="galleryGrid" class="masonry" aria-live="polite"></div>
+
+      <!-- Loader / paginación -->
+      <div class="loader" id="loader" hidden>
+        <div class="spinner"></div>
+      </div>
+      <div class="center">
+        <button id="loadMoreBtn" class="btn btn--ghost" hidden>Cargar más</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="section">
+    <div class="container two-col">
+      <div>
+        <h2 class="h2">Nosotros</h2>
+        <p>
+          Avenor — Real Estate Productions. Dirección de arte aplicada a producto inmobiliario.
+          Trabajamos con una única premisa: **menos es más**.
+        </p>
+      </div>
+      <ul class="list">
+        <li>Estética B/N, foco en forma, luz y proporción.</li>
+        <li>Procesos medibles, entregables claros, feedback rápido.</li>
+        <li>Integración con marketing de performance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="section section--tight">
+    <div class="container contact">
+      <h2 class="h2">Contacto</h2>
+      <p class="muted">Buenos Aires, Argentina · Trabajamos remoto / on-site</p>
+      <a class="btn" href="mailto:hola@avenorproductions.com">hola@avenorproductions.com</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Avenor – Real Estate Productions</span>
+      <a class="muted" href="./admin.html">Panel administrativo</a>
     </div>
   </footer>
 
-  <!-- ====== JS DE TU SITIO (idéntico al original, manteniendo una sola copia) ====== -->
-  <script defer src="main.js"></script><!-- aconsejo separar tu JS a main.js -->
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
