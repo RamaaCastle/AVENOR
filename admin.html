@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avenor — Panel Administrativo</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .admin{ padding-top:82px; }
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    @media (max-width: 900px){ .grid-2{ grid-template-columns:1fr; } }
+    input, select, textarea {
+      width:100%; background:#0e0e0e; border:1px solid var(--border); color:var(--fg);
+      border-radius:12px; padding:10px 12px; outline:none;
+    }
+    label{ font-size:13px; color:var(--muted); }
+    .table{ width:100%; border-collapse:collapse; font-size:14px; }
+    .table th, .table td{ padding:10px; border-bottom:1px solid var(--border); }
+    .thumb{ width:80px; height:64px; object-fit:cover; border-radius:8px; border:1px solid var(--border); }
+    .topbar{ position:sticky; top:64px; z-index:10; background:#0b0b0b; border-bottom:1px solid var(--border); }
+    .topbar__inner{ height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .danger{ border-color:#3a0000; color:#fff; background:#1a0000; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="./index.html" class="logo"><span class="logo__mark">A</span><span class="logo__type">venor</span></a>
+      <nav class="nav">
+        <a href="./index.html">Sitio</a>
+      </nav>
+      <div class="header__cta">
+        <button id="logoutBtn" class="btn btn--ghost">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div id="authState" class="muted">Cargando autenticación…</div>
+      <div class="muted"><strong>Panel</strong> — Galería aesthetic</div>
+    </div>
+  </div>
+
+  <main class="admin container section--tight">
+    <!-- Login -->
+    <section id="loginView" hidden>
+      <h2 class="h2">Iniciar sesión</h2>
+      <p class="muted">Acceso restringido.</p>
+      <div class="grid-2">
+        <div>
+          <label>Email</label>
+          <input id="email" type="email" placeholder="admin@avenor.com" />
+        </div>
+        <div>
+          <label>Contraseña</label>
+          <input id="password" type="password" placeholder="••••••••" />
+        </div>
+      </div>
+      <div style="margin-top:12px; display:flex; gap:8px;">
+        <button id="loginBtn" class="btn">Entrar</button>
+        <button id="createBtn" class="btn btn--ghost">Crear usuario</button>
+      </div>
+      <p class="muted" style="margin-top:8px;">(La creación de usuario solo debería usarse una vez y luego deshabilitarse en reglas.)</p>
+    </section>
+
+    <!-- Uploader -->
+    <section id="panelView" hidden>
+      <h2 class="h2">Subir a galería</h2>
+      <div class="grid-2">
+        <div>
+          <label>Imagen</label>
+          <input id="fileInput" type="file" accept="image/*" />
+          <div id="previewWrap" style="margin-top:10px;"></div>
+        </div>
+        <div>
+          <label>Título (opcional)</label>
+          <input id="titleInput" type="text" placeholder="Living Recoleta · B/N" />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+            <div>
+              <label>Categoría</label>
+              <select id="categorySelect">
+                <option value="interiores">Interiores</option>
+                <option value="exteriores">Exteriores</option>
+                <option value="staging" selected>Staging</option>
+                <option value="planos">Planos</option>
+              </select>
+            </div>
+            <div>
+              <label>Prioridad (0–100)</label>
+              <input id="priorityInput" type="number" min="0" max="100" value="50" />
+            </div>
+          </div>
+          <button id="uploadBtn" class="btn" style="margin-top:12px;">Subir</button>
+        </div>
+      </div>
+
+      <hr style="margin:28px 0; border:0; border-top:1px solid var(--border)" />
+
+      <h3>Listado</h3>
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Preview</th><th>Título</th><th>Categoría</th><th>Fecha</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Avenor</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>
